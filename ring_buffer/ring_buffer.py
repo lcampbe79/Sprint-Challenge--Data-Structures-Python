@@ -8,13 +8,31 @@ class RingBuffer:
         self.storage = DoublyLinkedList()
 
     def append(self, item):
-        pass
+        
+        if self.storage.length < self.capacity:
+            #add item to the tail
+            self.storage.add_to_tail(item)
+            return
+        #if current has no value
+        if self.current == None:
+            self.current = self.storage.head
+        #sets the current value to the item
+        self.current.value = item
+        #add the next value
+        self.current = self.current.next
+    
 
     def get(self):
         # Note:  This is the only [] allowed
         list_buffer_contents = []
 
-        # TODO: Your code here
+        curr = self.storage.head
+
+        #while there is a current:
+        while curr:
+            #adds 
+            list_buffer_contents.append(curr.value)
+            curr = curr.next
 
         return list_buffer_contents
 
